@@ -1,7 +1,7 @@
 # Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -g
-LDFLAGS = -lpthread
+LDFLAGS = -lpthread 
 
 # Target executables
 TARGETS = server client
@@ -11,8 +11,9 @@ TARGETS = server client
 # The '?=' operator allows the user to override it from the command line, e.g., 'make install PREFIX=/opt'
 ifeq ($(OS),Windows_NT)
 	# Default for MSYS2/MinGW environments on Windows
-	PREFIX ?= /mingw64
+	PREFIX ?= /usr
 	INSTALL_CMD = cp
+	UNINSTALL_CMD = rm -f
 else
 	UNAME_S := $(shell uname -s)
 	# Default for Linux and macOS
@@ -33,7 +34,7 @@ all: $(TARGETS)
 
 # Rule to build the server
 server: server.o
-	$(CC) $(CFLAGS) -o server server.o
+	$(CC) $(CFLAGS) -o server server.o $(LDFLAGS)
 
 # Rule to build the client
 client: client.o

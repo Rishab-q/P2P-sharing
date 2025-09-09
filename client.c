@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <libgen.h>
 
-#define SERVER_PORT 8080
+#define SERVER_PORT 8081
 #define BUFFER_SIZE 4096
 
 char SERVER_IP[INET_ADDRSTRLEN];

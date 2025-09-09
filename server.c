@@ -6,11 +6,12 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-#define PORT 8080
+#define PORT 8081
 #define MAX_PEERS 10
 #define MAX_FILES 10
 #define MAX_FILENAME_LEN 50
 #define BUFFER_SIZE 4096 // Increased buffer for larger file lists
+
 
 typedef struct {
     char ip_addr[INET_ADDRSTRLEN];
@@ -19,6 +20,7 @@ typedef struct {
     int file_count;
     int is_active;
 } PeerInfo;
+
 
 PeerInfo peer_list[MAX_PEERS];
 int peer_count = 0;
@@ -161,6 +163,7 @@ void* handle_client(void* socket_desc) {
 }
 
 int main() {
+
     int server_fd;
     struct sockaddr_in address;
     int opt = 1;
@@ -207,5 +210,6 @@ int main() {
     }
 
     close(server_fd);
+
     return 0;
 }
